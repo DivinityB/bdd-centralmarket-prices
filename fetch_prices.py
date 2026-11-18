@@ -6,6 +6,7 @@ Output per region: {"t": unix time of this update, "region": "eu", "p": {"<item 
 An id that could not be fetched this time keeps its previous value (from the old file in out_dir); "stale" lists those ids."""
 import json, os, sys, time, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
+import threading
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.environ.get("ARSHA_BASE", "https://api.arsha.io").rstrip("/")
@@ -46,8 +47,7 @@ def run(region, ids, out_dir):
     try: old = json.load(open(path))
     except Exception: pass
     p, n, stale = {}, set(), []
-    batch_ok = True
-    def one(i):
+    def _unused(i):
         try:
             arr = entries(get("%s/v2/%s/GetWorldMarketSubList?id=%d&lang=en" % (BASE, region, i)))
             best = None
@@ -61,35 +61,38 @@ def run(region, ids, out_dir):
             if e.code in (400, 404): n.add(i)
             else: stale.append(i)
         except Exception: stale.append(i)
-    todo = list(ids)
-    while todo:
+    lock = threading.Lock()
+    def setp(i, pr):
+        with lock:
+            if pr: p[str(i)] = pr
+            else: n.add(i)
+    def fetch(chunk, tries):
+        """one request for the chunk; a server error (arsha.io is often 'blocked by Imperva' for part of a request) splits the chunk in halves, down to single ids"""
         if time.time() > DEADLINE:
-            stale.extend(todo); print("deadline reached, %d ids not fetched" % len(todo)); break
-        chunk, todo = todo[:BATCH], todo[BATCH:]
-        if batch_ok:
-            try:
-                got = {}
-                for x in entries(get("%s/v2/%s/GetWorldMarketSubList?id=%s&lang=en" % (BASE, region, ",".join(map(str, chunk))))):
-                    i = eid(x)
-                    if i is None: continue
-                    if i not in got or (x.get("sid") in (None, 0) or x.get("minEnhance") == 0): got[i] = x
-                if not any(i in got for i in chunk): raise ValueError("batch answer not understood")
-                for i in chunk:
-                    if i in got:
-                        pr = price(got[i])
-                        if pr: p[str(i)] = pr
-                        else: n.add(i)
-                    else: n.add(i)
-                continue
-            except urllib.error.HTTPError as e:
-                if e.code not in (400, 404): stale.extend(chunk); continue
-                batch_ok = False
-            except ValueError:
-                batch_ok = False
-            except Exception:
-                stale.extend(chunk); continue
-            print("batch requests do not work, using single requests")
-        with ThreadPoolExecutor(8) as ex: list(ex.map(one, chunk))
+            with lock: stale.extend(chunk)
+            return
+        try:
+            arr = entries(get("%s/v2/%s/GetWorldMarketSubList?id=%s&lang=en" % (BASE, region, ",".join(map(str, chunk))), tries=tries))
+        except urllib.error.HTTPError as e:
+            if e.code in (400, 404) and len(chunk) == 1: setp(chunk[0], None); return
+            if len(chunk) > 1:
+                m = len(chunk) // 2; fetch(chunk[:m], 1); fetch(chunk[m:], 1); return
+            with lock: stale.append(chunk[0])
+            return
+        except Exception:
+            if len(chunk) > 1:
+                m = len(chunk) // 2; fetch(chunk[:m], 1); fetch(chunk[m:], 1); return
+            with lock: stale.append(chunk[0])
+            return
+        got = {}
+        for x in arr:
+            i = eid(x)
+            if i is None: continue
+            if i not in got or (x.get("sid") in (None, 0) or x.get("minEnhance") == 0): got[i] = x
+        for i in chunk:
+            setp(i, price(got[i]) if i in got else None)
+    chunks = [list(ids)[k:k + 10] for k in range(0, len(ids), 10)]
+    with ThreadPoolExecutor(4) as ex: list(ex.map(lambda c: fetch(c, 2), chunks))
     for i in stale:                                   # keep the last known value
         if str(i) in (old.get("p") or {}): p[str(i)] = old["p"][str(i)]
         elif i in (old.get("n") or []): n.add(i)
