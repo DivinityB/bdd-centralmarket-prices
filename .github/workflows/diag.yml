@@ -1,0 +1,14 @@
+name: Diagnose api
+on: workflow_dispatch
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Probe
+        run: |
+          B=https://api.arsha.io/v2/eu
+          echo "== category list 25/1"; curl -sS -m 25 -w "\nHTTP %{http_code} in %{time_total}s\n" "$B/GetWorldMarketList?mainCategory=25&subCategory=1&lang=en" | head -c 700
+          echo; echo "== 12 single SubList calls"; for i in 4901 8198 4925 9001 9002 4986 8041 7001 9015 9017 9059 9005; do curl -sS -m 20 -o /dev/null -w "$i HTTP %{http_code} %{time_total}s\n" "$B/GetWorldMarketSubList?id=$i&lang=en"; done
+          echo "== 5 category lists"; for c in "35 4" "80 8" "25 2" "25 7" "25 11"; do set -- $c; curl -sS -m 25 -o /dev/null -w "$1/$2 HTTP %{http_code} %{time_total}s\n" "$B/GetWorldMarketList?mainCategory=$1&subCategory=$2&lang=en"; done
+          echo "== GetWorldMarketSearchList"; curl -sS -m 25 -w "\nHTTP %{http_code} in %{time_total}s\n" "$B/GetWorldMarketSearchList?ids=4901,8198&lang=en" | head -c 500
