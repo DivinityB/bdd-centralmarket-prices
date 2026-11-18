@@ -74,7 +74,10 @@ def run(region, ids, out_dir):
         try:
             arr = entries(get("%s/v2/%s/GetWorldMarketSubList?id=%s&lang=en" % (BASE, region, ",".join(map(str, chunk))), tries=tries))
         except urllib.error.HTTPError as e:
-            if e.code in (400, 404) and len(chunk) == 1: setp(chunk[0], None); return
+            if e.code in (400, 404) and len(chunk) == 1:
+                print('  HTTP %d for id %d' % (e.code, chunk[0]))
+                with lock: stale.append(chunk[0])
+                return
             if len(chunk) > 1:
                 m = len(chunk) // 2; fetch(chunk[:m], 1); fetch(chunk[m:], 1); return
             with lock: stale.append(chunk[0])

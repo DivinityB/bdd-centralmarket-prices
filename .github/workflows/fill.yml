@@ -23,7 +23,7 @@ jobs:
           while [ $(date +%s) -lt $end ]; do
             n=$((n+1))
             if git fetch -q --depth=1 origin data 2>/dev/null; then rm -rf out && mkdir out && git archive FETCH_HEAD | tar -x -C out; fi
-            python3 fetch_prices.py out | grep -E "^eu:|deadline" || true
+            python3 fetch_prices.py out | grep -E "^eu:|deadline|HTTP 4" || true
             if [ -f out/prices-eu.json ]; then
               ( cd out && rm -rf .git && git init -q -b data && git config user.name price-feed && git config user.email price-feed@users.noreply.github.com && git add -A && git commit -q -m "prices pass $n" && git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" data ) || true
             fi
