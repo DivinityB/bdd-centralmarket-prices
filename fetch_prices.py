@@ -11,7 +11,7 @@ import threading
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.environ.get("ARSHA_BASE", "https://api.arsha.io").rstrip("/")
 BATCH = 50
-DEADLINE = time.time() + 6 * 60          # give up on slow requests after 6 minutes; ids not fetched keep their old price
+DEADLINE = time.time() + float(os.environ.get('DEADLINE_S', 360))          # give up on slow requests after 6 minutes; ids not fetched keep their old price
 
 def get(url, tries=4):
     last = None
