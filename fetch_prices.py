@@ -92,14 +92,19 @@ def run(region, ids, out_dir):
             i = eid(x)
             if i is None: continue
             if i not in got or (x.get("sid") in (None, 0) or x.get("minEnhance") == 0): got[i] = x
+        redo = []
         for i in chunk:
-            setp(i, price(got[i]) if i in got else None)
+            pr = price(got[i]) if i in got else None
+            if pr: setp(i, pr)
+            elif len(chunk) == 1: setp(i, None)          # confirmed by a single request: really no price
+            else: redo.append(i)                          # batch answers sometimes contain empty entries: ask again one by one
+        for i in redo: fetch([i], 2)
     ids = sorted(ids, key=lambda i: (str(i) in (old.get('p') or {}), i in (old.get('n') or [])))   # items without a price yet go first
     chunks = [list(ids)[k:k + 10] for k in range(0, len(ids), 10)]
     with ThreadPoolExecutor(4) as ex: list(ex.map(lambda c: fetch(c, 2), chunks))
     for i in stale:                                   # keep the last known value
         if str(i) in (old.get("p") or {}): p[str(i)] = old["p"][str(i)]
-    oz = old.get("z") or {}
+    oz = (old.get("z") or {}) if old.get("zv") == 2 else {}      # counts from older versions of this script are not trusted
     z = {}
     for i in zero:
         z[str(i)] = int(oz.get(str(i), 0)) + 1
@@ -108,7 +113,7 @@ def run(region, ids, out_dir):
     for i in stale:                                   # not fetched this pass: keep the count
         if str(i) in oz and int(oz[str(i)]) >= 3 and str(i) not in p: n.add(i); z[str(i)] = int(oz[str(i)])
     t = int(time.time())
-    res = {"t": t, "region": region, "p": p, "n": sorted(n), "z": z, "stale": sorted(i for i in stale if str(i) not in p and i not in n)}
+    res = {"t": t, "region": region, "p": p, "n": sorted(n), "z": z, "zv": 2, "stale": sorted(i for i in stale if str(i) not in p and i not in n)}
     os.makedirs(out_dir, exist_ok=True)
     json.dump(res, open(path, "w"), separators=(",", ":"))
     print("%s: %d prices, %d not on the market, %d could not be fetched (%d kept from before)" % (region, len(p), len(n), len(stale), sum(1 for i in stale if str(i) in p)))
