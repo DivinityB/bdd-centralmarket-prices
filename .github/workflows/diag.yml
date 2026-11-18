@@ -7,5 +7,17 @@ jobs:
     steps:
       - name: Probe
         run: |
-          B=https://api.arsha.io/v2/eu
-          for ids in "9793,9768,517,7907,4901" "9793,9768,517,7907,4901,8198,9001,9002,4925,4986"; do for t in 1 2 3 4 5 6 7 8; do c=$(curl -sS -m 20 -o /tmp/r.json -w "%{http_code}" "$B/GetWorldMarketSubList?id=$ids&lang=en"); [ "$c" = 200 ] && break; sleep 2; done; echo "== $ids HTTP $c"; head -c 1500 /tmp/r.json; echo; done
+          python3 - <<'PY'
+          import json, time, fetch_prices as F
+          ids = json.load(open("ids.json"))
+          old = json.load(__import__("urllib.request").request.urlopen("https://raw.githubusercontent.com/DivinityB/bdd-centralmarket-prices/data/prices-eu.json"))
+          z = [int(i) for i in old["n"]][:12]
+          print("zero ids sample", z)
+          for chunk in (z[:5], z[:10], [9793], [517]):
+              for t in range(8):
+                  try:
+                      arr = F.entries(F.get("https://api.arsha.io/v2/eu/GetWorldMarketSubList?id=%s&lang=en" % ",".join(map(str, chunk)), tries=1)); break
+                  except Exception as e:
+                      arr = None; time.sleep(2)
+              print("chunk", chunk, "->", None if arr is None else [(F.eid(x), x.get("sid"), x.get("basePrice"), x.get("lastSoldPrice")) for x in arr])
+          PY
