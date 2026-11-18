@@ -91,6 +91,7 @@ def run(region, ids, out_dir):
             if i not in got or (x.get("sid") in (None, 0) or x.get("minEnhance") == 0): got[i] = x
         for i in chunk:
             setp(i, price(got[i]) if i in got else None)
+    ids = sorted(ids, key=lambda i: (str(i) in (old.get('p') or {}), i in (old.get('n') or [])))   # items without a price yet go first
     chunks = [list(ids)[k:k + 10] for k in range(0, len(ids), 10)]
     with ThreadPoolExecutor(4) as ex: list(ex.map(lambda c: fetch(c, 2), chunks))
     for i in stale:                                   # keep the last known value
