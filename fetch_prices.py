@@ -46,7 +46,7 @@ def run(region, ids, out_dir):
     old = {}
     try: old = json.load(open(path))
     except Exception: pass
-    p, n, stale = {}, set(), []
+    p, n, stale, zero = {}, set(), [], set()
     def _unused(i):
         try:
             arr = entries(get("%s/v2/%s/GetWorldMarketSubList?id=%d&lang=en" % (BASE, region, i)))
@@ -65,7 +65,7 @@ def run(region, ids, out_dir):
     def setp(i, pr):
         with lock:
             if pr: p[str(i)] = pr
-            else: n.add(i)
+            else: zero.add(i)          # no price in the answer: could be a blocked/empty answer, so it only counts as 'not on the market' after 3 passes in a row
     def fetch(chunk, tries):
         """one request for the chunk; a server error (arsha.io is often 'blocked by Imperva' for part of a request) splits the chunk in halves, down to single ids"""
         if time.time() > DEADLINE:
@@ -96,9 +96,16 @@ def run(region, ids, out_dir):
     with ThreadPoolExecutor(4) as ex: list(ex.map(lambda c: fetch(c, 2), chunks))
     for i in stale:                                   # keep the last known value
         if str(i) in (old.get("p") or {}): p[str(i)] = old["p"][str(i)]
-        elif i in (old.get("n") or []): n.add(i)
+    oz = old.get("z") or {}
+    z = {}
+    for i in zero:
+        z[str(i)] = int(oz.get(str(i), 0)) + 1
+        if str(i) in (old.get("p") or {}) and z[str(i)] < 3: p[str(i)] = old["p"][str(i)]   # keep the old price while the empty answer is not confirmed
+        elif z[str(i)] >= 3: n.add(i)
+    for i in stale:                                   # not fetched this pass: keep the count
+        if str(i) in oz and int(oz[str(i)]) >= 3 and str(i) not in p: n.add(i); z[str(i)] = int(oz[str(i)])
     t = int(time.time())
-    res = {"t": t, "region": region, "p": p, "n": sorted(n), "stale": sorted(i for i in stale if str(i) not in p and i not in n)}
+    res = {"t": t, "region": region, "p": p, "n": sorted(n), "z": z, "stale": sorted(i for i in stale if str(i) not in p and i not in n)}
     os.makedirs(out_dir, exist_ok=True)
     json.dump(res, open(path, "w"), separators=(",", ":"))
     print("%s: %d prices, %d not on the market, %d could not be fetched (%d kept from before)" % (region, len(p), len(n), len(stale), sum(1 for i in stale if str(i) in p)))
