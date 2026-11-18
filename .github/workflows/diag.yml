@@ -8,4 +8,4 @@ jobs:
       - name: Probe
         run: |
           B=https://api.arsha.io/v2/eu
-          for id in 7907 9793 9768 517 4901; do for t in 1 2 3 4 5 6; do c=$(curl -sS -m 20 -o /tmp/r.json -w "%{http_code}" "$B/GetWorldMarketSubList?id=$id&lang=en"); [ "$c" = 200 ] && break; sleep 2; done; echo "== $id HTTP $c"; head -c 700 /tmp/r.json; echo; done
+          for ids in "9793,9768,517,7907,4901" "9793,9768,517,7907,4901,8198,9001,9002,4925,4986"; do for t in 1 2 3 4 5 6 7 8; do c=$(curl -sS -m 20 -o /tmp/r.json -w "%{http_code}" "$B/GetWorldMarketSubList?id=$ids&lang=en"); [ "$c" = 200 ] && break; sleep 2; done; echo "== $ids HTTP $c"; head -c 1500 /tmp/r.json; echo; done
