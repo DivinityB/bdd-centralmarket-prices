@@ -10,18 +10,21 @@ from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.environ.get("ARSHA_BASE", "https://api.arsha.io").rstrip("/")
 BATCH = 50
+DEADLINE = time.time() + 6 * 60          # give up on slow requests after 6 minutes; ids not fetched keep their old price
 
 def get(url, tries=4):
     last = None
     for i in range(tries):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "garmoth-price-feed"}), timeout=30) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "garmoth-price-feed"}), timeout=20) as r:
                 return json.loads(r.read().decode("utf-8"))
         except urllib.error.HTTPError as e:
             if e.code in (400, 404): raise
             last = e
         except Exception as e:
             last = e
+        print("  request failed (%s): %s" % (type(last).__name__, str(last)[:120]), flush=True)
+        if time.time() > DEADLINE: break
         time.sleep(1.5 * (i + 1))
     raise last
 
@@ -60,6 +63,8 @@ def run(region, ids, out_dir):
         except Exception: stale.append(i)
     todo = list(ids)
     while todo:
+        if time.time() > DEADLINE:
+            stale.extend(todo); print("deadline reached, %d ids not fetched" % len(todo)); break
         chunk, todo = todo[:BATCH], todo[BATCH:]
         if batch_ok:
             try:
