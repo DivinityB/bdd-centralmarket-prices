@@ -122,6 +122,8 @@ def run(region, ids, out_dir):
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "out")
     ids = json.load(open(os.path.join(HERE, "ids.json")))
+    try: ids = sorted(set(ids) | set(json.load(open(os.path.join(HERE, "ids-extra.json")))))      # extra ids that must stay when ids.json is regenerated
+    except FileNotFoundError: pass
     for region in os.environ.get("REGIONS", "eu").split(","):
         res = run(region.strip(), ids, out)
         if not res["p"]: sys.exit("no prices at all for " + region)
