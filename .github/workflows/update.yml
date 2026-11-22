@@ -1,33 +1,44 @@
 name: Update prices
+# One run loops for about 5 h 40 min: fetch + publish every 3 minutes, then starts the next run itself (GitHub's own schedule is too unreliable
+# and cannot go faster than every 5 minutes). The cron line is only a safety net that restarts the chain if it ever breaks; extra runs just wait in the queue.
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 concurrency:
   group: prices
   cancel-in-progress: false
 permissions:
   contents: write
+  actions: write
 jobs:
   prices:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REGIONS: eu
+      INTERVAL: "180"
     steps:
       - uses: actions/checkout@v4
-      - name: Get the previous data (so a failed fetch keeps old values)
+      - name: Loop - fetch and publish every 3 minutes
         run: |
           mkdir -p out
+          # previous data first, so a failed fetch keeps the old values
           if git fetch -q --depth=1 origin data; then git archive FETCH_HEAD | tar -x -C out; fi
-      - name: Fetch prices
-        env:
-          REGIONS: eu
-        run: python3 fetch_prices.py out
-      - name: Publish (branch "data" holds one commit only, no history)
-        run: |
-          cd out
-          git init -q -b data
-          git config user.name "price-feed"
-          git config user.email "price-feed@users.noreply.github.com"
-          git add -A
-          git commit -q -m "prices $(date -u +%H:%M)"
-          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" data
+          END=$((SECONDS + 20400))
+          while [ $SECONDS -lt $END ]; do
+            START=$SECONDS
+            if python3 fetch_prices.py out; then
+              ( cd out && rm -rf .git && git init -q -b data && git config user.name "price-feed" && git config user.email "price-feed@users.noreply.github.com" \
+                && git add -A && git commit -q -m "prices $(date -u +%H:%M)" \
+                && git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" data ) || echo "publish failed"
+            else
+              echo "fetch failed, old file stays"
+            fi
+            LEFT=$((START + INTERVAL - SECONDS))
+            if [ $LEFT -gt 0 ]; then sleep $LEFT; fi
+          done
+      - name: Start the next run
+        if: always()
+        run: gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/workflows/update.yml/dispatches" -f ref=main
