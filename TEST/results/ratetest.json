@@ -1,0 +1,43 @@
+[
+ {
+  "delay": 0.5,
+  "ok": 150,
+  "bad": 0,
+  "secs": 108,
+  "first_failure": null
+ },
+ {
+  "delay": 0.25,
+  "ok": 115,
+  "bad": 35,
+  "secs": 64,
+  "first_failure": {
+   "after": 115,
+   "code": 200,
+   "body": "<html style=\"height:100%\"><head><META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, NOFOLLOW\"><meta name=\"format-detection\" content=\"telephone=no\"><meta name=\"viewport\" content=\"initial-scale=1.0\"><meta http-equiv=",
+   "headers": {
+    "Content-Type": "text/html",
+    "Content-Length": "845",
+    "X-Iinfo": "45-2639666-0 0NNN RT(1795377414003 4) q(0 -1 -1 -1) r(0 -1) B12(11,4034700,0) U24",
+    "Set-Cookie": "visid_incap_2504216=m6dsUiKURburBdn5RCcz3wVJA2sAAAAAQUIPAAAAAAD7pE7uHjSs1Lq34rga4ezS; expires=Mon, 22 Nov 2027 07:51:53 GMT; HttpOnly; path=/; Domain=.naeu.playblackdesert.com; Secure; SameSite=None"
+   }
+  }
+ },
+ {
+  "delay": 0.1,
+  "ok": 111,
+  "bad": 39,
+  "secs": 41,
+  "first_failure": {
+   "after": 111,
+   "code": 200,
+   "body": "<html style=\"height:100%\"><head><META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, NOFOLLOW\"><meta name=\"format-detection\" content=\"telephone=no\"><meta name=\"viewport\" content=\"initial-scale=1.0\"><meta http-equiv=",
+   "headers": {
+    "Content-Type": "text/html",
+    "Content-Length": "851",
+    "X-Iinfo": "49-5669574-0 0NNN RT(1795377519769 4) q(0 -1 -1 -1) r(0 -1) B12(11,4034700,0) U24",
+    "Set-Cookie": "visid_incap_2504216=Jf3Dfo1tRkO73NcnKNRys29JA2sAAAAAQUIPAAAAAACRRfWhWFAOw2XCMcd+hYgF; expires=Mon, 22 Nov 2027 07:51:52 GMT; HttpOnly; path=/; Domain=.naeu.playblackdesert.com; Secure; SameSite=None"
+   }
+  }
+ }
+]
