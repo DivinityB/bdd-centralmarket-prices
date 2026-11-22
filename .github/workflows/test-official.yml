@@ -1,9 +1,10 @@
 name: TEST official market
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["TEST/**"]
+    inputs:
+      script:
+        description: script in TEST/ to run
+        default: official_test2.py
 concurrency:
   group: test-official
 permissions:
@@ -14,7 +15,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - run: python3 official_test2.py
+      - run: python3 ${{ inputs.script }}
         working-directory: TEST
       - name: Save result (only inside TEST/results)
         if: always()
