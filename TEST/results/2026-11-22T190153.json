@@ -1,0 +1,412 @@
+{
+ "started": "2026-11-22T19:01:53.212764Z",
+ "sample": 200,
+ "chunk": 50,
+ "rounds": [
+  {
+   "round": 0,
+   "official": [
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.56,
+     "bytes": 1209,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"524-2649-815-20056599|566-13-34-4473833|595-0-126-28920|673-6109-705000-22313543|676-11311-156000-64291175|689-13180-171000-6692553|698-83705-277000-54596984|707-361-158000-2622610|712-18389-266000-72486845|724-3482-14400-34826319|727-0-180000-8961389|730-13-2050-776555|",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.23,
+     "bytes": 1172,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"5464-25357-15600-34394276|5802-2762-1390-2580594357|5853-39419-12000-149342259|5856-23270-11000-155941782|6002-117151-870-67084577|6017-724-2180-6080159|6020-1179878-1370-104817228|6022-19679-1800-9898502|6029-24417-930-6101782|6151-36778-4370-81581071|6157-12294-5100-14",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.25,
+     "bytes": 1196,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"9379-0-4050-5958704|9403-31732-2630-9069561|9420-6-1720-187545|9428-891-1480-204361|9434-0-25500-436454|9437-10869-5900-1577261|9456-0-980000-1921799|9472-0-31400-501991|9483-0-33900-8341506|9492-39536-6500-2530013276|9602-34848-100000-798808799|9649-0-37300000-1588|9748",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.23,
+     "bytes": 1198,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"25138-7-74500000-405|25159-0-37300000-66|25164-0-12500000-113|25201-0-11700000-2739|25202-4-26700000-2568|25232-0-250000000-229|25237-0-466000000-247|45201-336-227000-28056|45264-4-1080000000000-4|50801-0-46600000-4115443|54003-751-4520-60825715|54005-43949-17400-2944152",
+     "blocked_hint": false,
+     "ok": true
+    }
+   ],
+   "arsha": [
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.65,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:01:55.056763715Z\",\"id\":\"7f9dbd48-d3ce-4112-847c-be181eb4c903\",\"code\":103,\"host\":\"api-7964c8b5cc-xc26q\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.49,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:01:55.540465082Z\",\"id\":\"b3365a67-234a-443e-9219-47738fc4202a\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.5,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:01:56.038829814Z\",\"id\":\"cc7d2c32-269c-4924-a984-be6be00e842b\",\"code\":103,\"host\":\"api-7964c8b5cc-98f5l\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.49,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:01:56.524585157Z\",\"id\":\"2d33df0d-7bff-411b-a18f-694bf7a0e456\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "official": [
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.24,
+     "bytes": 1209,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"524-2649-815-20056599|566-13-34-4473833|595-0-126-28920|673-6109-705000-22313543|676-11311-156000-64291175|689-13180-171000-6692553|698-83705-277000-54596984|707-361-158000-2622610|712-18389-266000-72486845|724-2982-14400-34826819|727-0-180000-8961389|730-13-2050-776555|",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.24,
+     "bytes": 1172,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"5464-25357-15600-34394276|5802-2762-1390-2580594357|5853-39419-12000-149342259|5856-23270-11000-155941782|6002-117151-870-67084577|6017-724-2180-6080159|6020-1179878-1370-104817228|6022-19679-1800-9898502|6029-24417-930-6101782|6151-36778-4370-81581071|6157-12294-5100-14",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.23,
+     "bytes": 1196,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"9379-0-4050-5958704|9403-31732-2630-9069561|9420-6-1720-187545|9428-891-1480-204361|9434-0-25500-436454|9437-10869-5900-1577261|9456-0-980000-1921799|9472-0-31400-501991|9483-0-33900-8341506|9492-39536-6500-2530013276|9602-34848-100000-798808799|9649-0-37300000-1588|9748",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.19,
+     "bytes": 1198,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"25138-7-74500000-405|25159-0-37300000-66|25164-0-12500000-113|25201-0-11700000-2739|25202-4-26700000-2568|25232-0-250000000-229|25237-0-466000000-247|45201-336-227000-28056|45264-4-1080000000000-4|50801-0-46600000-4115443|54003-741-4520-60825725|54005-43949-17400-2944152",
+     "blocked_hint": false,
+     "ok": true
+    }
+   ],
+   "arsha": [
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.7,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:02:58.122083423Z\",\"id\":\"fb05c22e-08f9-491c-9d02-c032e7d81508\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.53,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:02:58.667038005Z\",\"id\":\"8cda4f7e-bc2f-49ac-bbf5-2fb7465c2434\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.56,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:02:59.224955015Z\",\"id\":\"c6b6346e-f522-4de7-bc73-bebc50820ade\",\"code\":103,\"host\":\"api-7964c8b5cc-8zdvr\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.63,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:02:59.845667437Z\",\"id\":\"ba6aef16-ec7c-4a20-869d-f2408394a5b8\",\"code\":103,\"host\":\"api-7964c8b5cc-98f5l\"}",
+     "blocked_hint": true,
+     "ok": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "official": [
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.33,
+     "bytes": 1209,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"524-2649-815-20056599|566-13-34-4473833|595-0-126-28920|673-6109-705000-22313543|676-11311-156000-64291175|689-13180-171000-6692553|698-83705-277000-54596984|707-361-158000-2622610|712-18389-266000-72486845|724-2982-14400-34826819|727-0-180000-8961389|730-13-2050-776555|",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.18,
+     "bytes": 1175,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"5464-25357-15600-34394276|5802-2762-1390-2580594357|5853-39419-12000-149342259|5856-23270-11000-155941782|6002-117151-870-67084577|6017-724-2180-6080159|6020-1179878-1370-104817228|6022-19679-1800-9898502|6029-24417-930-6101782|6151-36778-4370-81581071|6157-12294-5100-14",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.24,
+     "bytes": 1196,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"9379-0-4050-5958704|9403-31732-2630-9069561|9420-6-1720-187545|9428-891-1480-204361|9434-0-25500-436454|9437-10869-5900-1577261|9456-0-980000-1921799|9472-0-31400-501991|9483-0-33900-8341506|9492-39536-6500-2530013276|9602-34848-100000-798808799|9649-0-37300000-1588|9748",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.19,
+     "bytes": 1198,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"25138-7-74500000-405|25159-0-37300000-66|25164-0-12500000-113|25201-0-11700000-2739|25202-4-26700000-2568|25232-0-250000000-229|25237-0-466000000-247|45201-336-227000-28056|45264-4-1080000000000-4|50801-0-46600000-4115443|54003-741-4520-60825725|54005-43949-17400-2944152",
+     "blocked_hint": false,
+     "ok": true
+    }
+   ],
+   "arsha": [
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.71,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:04:01.511488927Z\",\"id\":\"138f75d5-f65e-4b55-a725-7c905291d034\",\"code\":103,\"host\":\"api-7964c8b5cc-98f5l\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.54,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:04:02.051330724Z\",\"id\":\"fde8c71a-9ef3-4573-8a5e-9ff721c306e4\",\"code\":103,\"host\":\"api-7964c8b5cc-xc26q\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.5,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:04:02.549719012Z\",\"id\":\"5f3b0d9e-92c2-4d3f-a72a-446bb234d399\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.48,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:04:03.031244131Z\",\"id\":\"17874904-cc2e-4954-8fd3-f45239470624\",\"code\":103,\"host\":\"api-7964c8b5cc-lx9dq\"}",
+     "blocked_hint": true,
+     "ok": false
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "official": [
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.26,
+     "bytes": 1209,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"524-2649-815-20056599|566-13-34-4473833|595-0-126-28920|673-6109-705000-22313543|676-11311-156000-64291175|689-13180-171000-6692553|698-83705-277000-54596984|707-361-158000-2622610|712-18389-266000-72486845|724-2982-14400-34826819|727-0-180000-8961389|730-13-2050-776555|",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.19,
+     "bytes": 1175,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"5464-25357-15600-34394276|5802-2762-1390-2580594357|5853-39419-12000-149342259|5856-23270-11000-155941782|6002-117151-870-67084577|6017-724-2180-6080159|6020-1179878-1370-104817228|6022-19679-1800-9898502|6029-24417-930-6101782|6151-36778-4370-81581071|6157-12294-5100-14",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.25,
+     "bytes": 1196,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"9379-0-4050-5958704|9403-31732-2630-9069561|9420-6-1720-187545|9428-891-1480-204361|9434-0-25500-436454|9437-10869-5900-1577261|9456-0-980000-1921799|9472-0-31400-501991|9483-0-33900-8341506|9492-39536-6500-2530013276|9602-34848-100000-798808799|9649-0-37300000-1588|9748",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.19,
+     "bytes": 1198,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"25138-7-74500000-405|25159-0-37300000-66|25164-0-12500000-113|25201-0-11700000-2739|25202-4-26700000-2568|25232-0-250000000-229|25237-0-466000000-247|45201-336-227000-28056|45264-4-1080000000000-4|50801-0-46600000-4115443|54003-741-4520-60825725|54005-43949-17400-2944152",
+     "blocked_hint": false,
+     "ok": true
+    }
+   ],
+   "arsha": [
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.9,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:05:04.822481967Z\",\"id\":\"4c122154-6038-4447-b33f-76019132a413\",\"code\":103,\"host\":\"api-7964c8b5cc-8zdvr\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.5,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:05:05.324482456Z\",\"id\":\"31782fe7-9892-430e-b9be-8dbd9ae631b2\",\"code\":103,\"host\":\"api-7964c8b5cc-xc26q\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.5,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:05:05.824221952Z\",\"id\":\"311889a3-c0ed-41b6-b211-b02d0cc93f08\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.52,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:05:06.340382703Z\",\"id\":\"107e8948-53eb-4585-8a5b-6480d4ad87a7\",\"code\":103,\"host\":\"api-7964c8b5cc-98f5l\"}",
+     "blocked_hint": true,
+     "ok": false
+    }
+   ]
+  },
+  {
+   "round": 4,
+   "official": [
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.28,
+     "bytes": 1210,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"524-2649-815-20056599|566-13-34-4473833|595-0-126-28920|673-6109-705000-22313543|676-11311-156000-64291175|689-13180-171000-6692553|698-83705-277000-54596984|707-361-158000-2622610|712-18389-266000-72486845|724-2982-14400-34826819|727-0-180000-8961389|730-13-2050-776555|",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.21,
+     "bytes": 1175,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"5464-25357-15600-34394276|5802-2762-1390-2580594357|5853-39419-12000-149342259|5856-23270-11000-155941782|6002-117151-870-67084577|6017-724-2180-6080159|6020-1179878-1370-104817228|6022-19679-1800-9898502|6029-24417-930-6101782|6151-36778-4370-81581071|6157-12294-5100-14",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.25,
+     "bytes": 1196,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"9379-0-4050-5958704|9403-31732-2630-9069561|9420-6-1720-187545|9428-891-1480-204361|9434-0-25500-436454|9437-10869-5900-1577261|9456-0-980000-1921799|9472-0-31400-501991|9483-0-33900-8341506|9492-39536-6500-2530013276|9602-34848-100000-798808799|9649-0-37300000-1588|9748",
+     "blocked_hint": false,
+     "ok": true
+    },
+    {
+     "n": 50,
+     "http": 200,
+     "secs": 0.19,
+     "bytes": 1198,
+     "head": "{\"resultCode\":0,\"resultMsg\":\"25138-7-74500000-405|25159-0-37300000-66|25164-0-12500000-113|25201-0-11700000-2739|25202-4-26700000-2568|25232-0-250000000-229|25237-0-466000000-247|45201-336-227000-28056|45264-4-1080000000000-4|50801-0-46600000-4115443|54003-741-4520-60825725|54005-43649-17400-2944155",
+     "blocked_hint": false,
+     "ok": true
+    }
+   ],
+   "arsha": [
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 1.85,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:06:09.113715593Z\",\"id\":\"1bac20ab-69d9-41f2-9adf-fe4a6d7c9407\",\"code\":103,\"host\":\"api-7964c8b5cc-lx9dq\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.54,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:06:09.663370491Z\",\"id\":\"6a7c30a2-66d5-4c96-b316-c6760e2f5c46\",\"code\":103,\"host\":\"api-7964c8b5cc-sxnd6\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.49,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:06:10.156868262Z\",\"id\":\"bcc95fa3-c5b8-49c2-bccc-54db2813c58b\",\"code\":103,\"host\":\"api-7964c8b5cc-lx9dq\"}",
+     "blocked_hint": true,
+     "ok": false
+    },
+    {
+     "n": 50,
+     "http": 500,
+     "secs": 0.56,
+     "bytes": 285,
+     "head": "{\"status\":500,\"message\":\"One or more requests returned invalid data (probably blocked by Imperva). Try again later.\",\"path\":\"/v2/eu/GetWorldMarketSubList\",\"timestamp\":\"2026-11-22T19:06:10.714158808Z\",\"id\":\"0061049a-e2a5-4881-95d9-5663cf8ac96a\",\"code\":103,\"host\":\"api-7964c8b5cc-8zdvr\"}",
+     "blocked_hint": true,
+     "ok": false
+    }
+   ]
+  }
+ ],
+ "summary_official": {
+  "requests": 20,
+  "ok": 20,
+  "blocked_hint": 0
+ },
+ "summary_arsha": {
+  "requests": 20,
+  "ok": 0,
+  "blocked_hint": 20
+ }
+}
