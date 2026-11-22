@@ -18,11 +18,6 @@ jobs:
         run: |
           mkdir -p out
           if git fetch -q --depth=1 origin data; then git archive FETCH_HEAD | tar -x -C out; fi
-      - name: Check that api.arsha.io answers
-        continue-on-error: true
-        run: |
-          curl -sS -m 20 -o /dev/null -w "single: HTTP %{http_code} in %{time_total}s\n" "https://api.arsha.io/v2/eu/GetWorldMarketSubList?id=4901&lang=en" || true
-          curl -sS -m 20 -w "\nbatch: HTTP %{http_code} in %{time_total}s\n" "https://api.arsha.io/v2/eu/GetWorldMarketSubList?id=4901,8198&lang=en" | head -c 600 || true
       - name: Fetch prices
         env:
           REGIONS: eu
