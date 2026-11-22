@@ -1,0 +1,2 @@
+# TEST (not used by the app or the price feed)
+`official_test.py` checks if the official Black Desert web market answers from a GitHub runner, and compares it with api.arsha.io on the same 200 item ids (5 rounds, 60 s apart). Results land in `TEST/results/`. The app reads only the `data` branch; nothing in this folder is read by the app or by `update.yml`. Runs through `.github/workflows/test-official.yml` (manual or on a push that touches `TEST/`).
